@@ -1,3 +1,31 @@
+"""
+Модуль app.py
+
+Предназначен для обработки команд и отправки сообщений в Telegram Bot
+
+Бот обрабатывает команды:
+    /start, /help: выводит инструкцию по работе с ботом
+    /values: выводит список доступных валют для конвертации
+
+Пользователь может отправлять сообщение с запросом конвертации в формате:
+    <имя валюты> <валюта в которую переводим> <количество>
+
+Основные функции:
+    start(message) - обрабатывает команды /start, /help
+    values(message) - обрабатывает команду /values и выводит список валют
+    convert(message) - обрабатывает текстовые сообщения с запросом на конвертацию,
+    обрабатывает ошибки и выводит результат
+
+Импортируемые библиотеки и модули:
+    telebot - для работы с Telegram Bot API
+    keys, TOKEN - из модуля конфигурации: токен бота и словарь ключей валют
+    ConvertionException, CryptoConverter - класс для обработки исключений и конвертации валют
+
+Бот запускается методом pulling
+
+Исключения:
+    ConvertionException выбрасывается при ошибках в обработке данных или невозможности конвертации
+"""
 import telebot
 from conf import keys, TOKEN
 from extensions import ConvertionException, CryptoConverter
@@ -40,7 +68,5 @@ def convert(message: telebot.types.Message):
     else:
         text = f'Цена {amount} {quote} в {base} - {total_cost}'
         bot.send_message(message.chat.id, text)
-
-# Добавить вывод total_base с учетом amount
 
 bot.polling(none_stop=True)
