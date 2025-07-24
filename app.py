@@ -19,7 +19,7 @@
 Импортируемые библиотеки и модули:
     telebot - для работы с Telegram Bot API
     keys, TOKEN - из модуля конфигурации: токен бота и словарь ключей валют
-    ConvertionException, CryptoConverter - класс для обработки исключений и конвертации валют
+    ConvertionException, CryptoConverter - из модуля расширений: класс для обработки исключений и конвертации валют
 
 Бот запускается методом pulling
 
